@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   KRONOS — Design tokens (dual-theme, blue-biased neutrals)
+   ============================================================ */
+:root {
+  /* Marca — navy profundo + ouro (identidade Kronos, refinada) */
+  --blue: #2f6fed;
+  --blue-lift: #4d8bf5;
+  --gold: #c9a24b;
+  --gold-soft: #e4c87f;
+  --pos: #10b981;
+  --warn: #e5a50a;
+  --crit: #e5484d;
+
+  --bg: #080c18;
+  --bg-2: #0b1122;
+  --surface: #0f1730;
+  --surface-2: #141f3c;
+  --line: #232f4e;
+  --line-soft: #19233f;
+  --fg: #edf1fb;
+  --fg-muted: #98a5c4;
+  --fg-dim: #64718f;
+  --ring: rgba(77, 139, 245, 0.5);
+  /* Soft UI Evolution — sombra em camadas, suave e nítida */
+  --shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.4), 0 14px 34px -18px rgba(0, 0, 0, 0.72);
+  --grid: rgba(152, 165, 196, 0.1);
+  --sky-1: rgba(47, 111, 237, 0.18);
+  --sky-2: rgba(201, 162, 75, 0.1);
+
+  --serif: "Spectral", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f3f5fb; --bg-2: #e9edf6; --surface: #ffffff; --surface-2: #f6f8fd;
+    --line: #dce2ee; --line-soft: #e8ecf5; --fg: #0f1729; --fg-muted: #4a5675;
+    --fg-dim: #8390ab; --ring: rgba(47, 111, 237, 0.38);
+    --shadow: 0 1px 2px -1px rgba(20, 33, 71, 0.12), 0 14px 30px -18px rgba(20, 33, 71, 0.28);
+    --grid: rgba(20, 33, 71, 0.08); --sky-1: rgba(47, 111, 237, 0.09); --sky-2: rgba(201, 162, 75, 0.14);
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f5fb; --bg-2: #e9edf6; --surface: #ffffff; --surface-2: #f6f8fd;
+  --line: #dce2ee; --line-soft: #e8ecf5; --fg: #0f1729; --fg-muted: #4a5675;
+  --fg-dim: #8390ab; --ring: rgba(47, 111, 237, 0.38);
+  --shadow: 0 1px 2px -1px rgba(20, 33, 71, 0.12), 0 14px 30px -18px rgba(20, 33, 71, 0.28);
+  --grid: rgba(20, 33, 71, 0.08); --sky-1: rgba(47, 111, 237, 0.09); --sky-2: rgba(201, 162, 75, 0.14);
+}
+:root[data-theme="dark"] {
+  --bg: #080c18; --bg-2: #0b1122; --surface: #0f1730; --surface-2: #141f3c;
+  --line: #232f4e; --line-soft: #19233f; --fg: #edf1fb; --fg-muted: #98a5c4;
+  --fg-dim: #64718f; --ring: rgba(77, 139, 245, 0.5);
+  --shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.4), 0 14px 34px -18px rgba(0, 0, 0, 0.72);
+  --grid: rgba(152, 165, 196, 0.1); --sky-1: rgba(47, 111, 237, 0.18); --sky-2: rgba(201, 162, 75, 0.1);
+}
+
+* { border-color: var(--line); }
+body {
+  margin: 0; font-family: var(--sans); background: var(--bg); color: var(--fg);
+  font-size: 14px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+  letter-spacing: -0.006em;
+}
+
+@layer utilities {
+  /* Números em mono tabular — precisão de "terminal financeiro" */
+  .tnum { font-family: var(--mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .font-serif-display { font-family: var(--serif); font-weight: 600; letter-spacing: -0.012em; }
+  .font-mono-num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+}
+
+/* Meander (grega) */
+.meander {
+  height: 8px; background: var(--gold);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cpath d='M0 6h4V2h8v4h4V0h8v6h4V2h8v4h4' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center / 48px 8px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='8' viewBox='0 0 48 8'%3E%3Cpath d='M0 6h4V2h8v4h4V0h8v6h4V2h8v4h4' fill='none' stroke='black' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x center / 48px 8px;
+  opacity: 0.55;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--fg-dim); }
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+
+/* ============================================================
+   Animações em CSS (substituem framer-motion — leves e rápidas)
+   ============================================================ */
+@keyframes kx-reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes kx-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kx-pop { from { opacity: 0; transform: translateY(24px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+/* Novas — usadas pelos gráficos das análises */
+@keyframes kx-draw { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kx-grow { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+@keyframes kx-pop-dot { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes kx-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
+/* Vetor do Kronos (tela inicial) */
+@keyframes kx-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes kx-pulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.62; } }
+@keyframes kx-fall { 0% { transform: translateY(-8px); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateY(14px); opacity: 0; } }
+
+.font-serif-display { letter-spacing: -0.01em; }
+
+.kx-reveal { animation: kx-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kx-page { animation: kx-reveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kx-stagger > * { animation: kx-reveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kx-stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.kx-stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.kx-stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.kx-stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.kx-stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.kx-stagger > *:nth-child(6) { animation-delay: 0.34s; }
+.kx-stagger > *:nth-child(7) { animation-delay: 0.4s; }
+.kx-stagger > *:nth-child(8) { animation-delay: 0.46s; }
+.kx-backdrop { animation: kx-fade 0.2s ease both; }
+.kx-modal { animation: kx-pop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-spin-slow { animation: spin-slow 60s linear infinite; transform-origin: center; }
+
+/* Gráficos SVG */
+.kx-draw { animation: kx-draw 0.7s ease-out both; }
+.kx-grow { animation: kx-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kx-pop-dot { animation: kx-pop-dot 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* Vetor do Kronos */
+.kx-float { animation: kx-float 7s ease-in-out infinite; }
+.kx-pulse { animation: kx-pulse 4.5s ease-in-out infinite; }
+.kx-fall { animation: kx-fall 2.2s linear infinite; }
+
+.kx-shimmer {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--line) 50%, var(--surface-2) 75%);
+  background-size: 800px 100%;
+  animation: kx-shimmer 1.3s linear infinite;
+}
+
+.kx-lift { transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1); }
+.kx-lift:hover { transform: translateY(-3px); }
+
+/* Com "reduzir movimento": desligamos as animações de ENTRADA (as bruscas),
+   mas mantemos o movimento AMBIENTE contínuo (giro, flutuação, pulso) — só
+   mais lento. Sem isso a tela inicial fica completamente estática. */
+@media (prefers-reduced-motion: reduce) {
+  .kx-reveal, .kx-page, .kx-stagger > *, .kx-backdrop, .kx-modal,
+  .kx-draw, .kx-grow, .kx-pop-dot, .kx-shimmer { animation: none !important; }
+  .animate-spin-slow { animation-duration: 120s; }
+  .kx-float { animation-duration: 14s; }
+  .kx-pulse { animation-duration: 9s; }
+  .kx-fall { animation-duration: 4.4s; }
+  .kx-lift { transition: none; }
+}
+
+/* Impressão */
+@media print {
+  aside, header, .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+  .fixed { position: static !important; }
+}
