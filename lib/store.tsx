@@ -35,6 +35,7 @@ import {
   cloudSignIn,
   cloudSignUp,
   cloudSignOut,
+  cloudSubscribe,
   cloudEstadoInicial,
   type CloudData,
 } from "./cloud";
@@ -183,9 +184,45 @@ export interface RegisterData {
 
 const Ctx = createContext<StoreCtx | null>(null);
 
+/** Usuário de contingência quando há sessão na nuvem mas ainda não há snapshot salvo. */
+function usuarioMinimo(id: string, email: string): User {
+  return {
+    id,
+    email,
+    senha_hash: "",
+    nome_negocio: email.split("@")[0] ?? "Minha conta",
+    documento: "",
+    perfil: "pf",
+    regime: "simples",
+    renda_mensal_centavos: 0,
+    plano: "free",
+    logo_url: null,
+    created_at: new Date().toISOString(),
+  };
+}
+
+/**
+ * Serializa com as chaves ordenadas, para que o snapshot escrito e o devolvido
+ * pelo Firestore produzam a mesma string e a comparação não gere idas e voltas.
+ */
+function assinatura(valor: unknown): string {
+  return JSON.stringify(valor, (_chave, v) =>
+    v && typeof v === "object" && !Array.isArray(v)
+      ? Object.keys(v as object)
+          .sort()
+          .reduce<Record<string, unknown>>((acc, k) => {
+            acc[k] = (v as Record<string, unknown>)[k];
+            return acc;
+          }, {})
+      : v
+  );
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, emptyState);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Assinatura do último snapshot escrito ou recebido — corta o eco entre save e listener. */
+  const ultimoSnapshot = useRef<string | null>(null);
 
   // Hidratação inicial: nuvem (se configurada e houver sessão) ou localStorage.
   useEffect(() => {
@@ -195,7 +232,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         const sess = await cloudGetSession();
         if (sess) {
           const data = await cloudLoad(sess.userId);
-          if (!cancel) dispatch({ type: "HYDRATE", payload: { ...emptyState, ...(data ?? {}), users: [] } });
+          // Sessão válida sem snapshot ainda: mantém o usuário logado com estado
+          // vazio em vez de jogá-lo de volta para a tela de login.
+          const base = data ?? { ...cloudEstadoInicial(usuarioMinimo(sess.userId, sess.email)), categorias: seedCategorias(sess.userId) };
+          if (!cancel) dispatch({ type: "HYDRATE", payload: { ...emptyState, ...base, users: [] } });
           return;
         }
         if (!cancel) dispatch({ type: "HYDRATE", payload: { ...emptyState } });
@@ -219,13 +259,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       if (!state.user) return;
       const userId = state.user.id;
       const payload = { ...rest, user: state.user } as CloudData;
+      const marca = assinatura(payload);
+      // Estado idêntico ao que já está na nuvem (inclusive o que acabou de chegar
+      // pelo listener): não reescreve, senão vira um ciclo entre os aparelhos.
+      if (marca === ultimoSnapshot.current) return;
       if (saveTimer.current) clearTimeout(saveTimer.current);
-      saveTimer.current = setTimeout(() => void cloudSave(userId, payload), 800);
+      saveTimer.current = setTimeout(() => {
+        ultimoSnapshot.current = marca;
+        void cloudSave(userId, payload);
+      }, 800);
       return;
     }
     void users;
     saveState({ ...rest, users });
   }, [state]);
+
+  // Sincronização ao vivo: alterações feitas em outro aparelho chegam sozinhas,
+  // sem precisar recarregar a página.
+  const userId = state.user?.id ?? null;
+  useEffect(() => {
+    if (!supabaseEnabled || !userId) return;
+    return cloudSubscribe(userId, (data) => {
+      const marca = assinatura(data);
+      if (marca === ultimoSnapshot.current) return;
+      ultimoSnapshot.current = marca;
+      dispatch({ type: "HYDRATE", payload: { ...emptyState, ...data, users: [] } });
+    });
+  }, [userId]);
 
   const api = useMemo<StoreCtx>(() => {
     return {
@@ -238,7 +298,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
           const res = await cloudSignIn(email, senha);
           if (!res.ok || !res.userId) return { ok: false, error: res.error };
           const data = await cloudLoad(res.userId);
-          dispatch({ type: "HYDRATE", payload: { ...emptyState, ...(data ?? {}), users: [] } });
+          const base = data ?? { ...cloudEstadoInicial(usuarioMinimo(res.userId, email)), categorias: seedCategorias(res.userId) };
+          dispatch({ type: "HYDRATE", payload: { ...emptyState, ...base, users: [] } });
           return { ok: true };
         }
         const u = state.users.find((x) => x.email.toLowerCase() === email.toLowerCase());

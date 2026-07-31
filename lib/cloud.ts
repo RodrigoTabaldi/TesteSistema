@@ -5,7 +5,7 @@
 // ============================================================
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import type { KronosState, User } from "./types";
 
@@ -75,6 +75,22 @@ export async function cloudSave(userId: string, data: CloudData): Promise<void> 
  */
 function semUndefined<T>(data: T): T {
   return JSON.parse(JSON.stringify(data)) as T;
+}
+
+/**
+ * Escuta o snapshot do usuário e reporta alterações vindas de outro aparelho.
+ * Escritas locais são ignoradas (`hasPendingWrites`) para não ecoarem de volta.
+ * Devolve a função de cancelamento.
+ */
+export function cloudSubscribe(userId: string, cb: (data: CloudData) => void): () => void {
+  return onSnapshot(
+    doc(db, "kronos_snapshots", userId),
+    (snap) => {
+      if (!snap.exists() || snap.metadata.hasPendingWrites) return;
+      cb(snap.data() as CloudData);
+    },
+    (error) => console.error("[Kronos] falha na sincronização em tempo real:", error)
+  );
 }
 
 export function cloudOnAuthChange(cb: (session: CloudSession | null) => void): () => void {
