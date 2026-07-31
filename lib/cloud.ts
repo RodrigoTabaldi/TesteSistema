@@ -1,18 +1,15 @@
 // ============================================================
-// KRONOS — Camada de nuvem (Supabase)
-// Estratégia MVP: um "snapshot" JSON por usuário na tabela
-// `kronos_snapshots` (protegida por RLS). Simples e robusto — sincroniza
-// TODO o estado entre máquinas com o mínimo de código. O schema normalizado
-// (transacoes, dividas, …) continua em schema.sql para evolução futura.
+// KRONOS — Camada de nuvem (Firebase)
+// Estratégia: snapshot JSON por usuário em Firestore.
+// Sincroniza estado entre máquinas com autenticação do Firebase.
 // ============================================================
 
-import { supabase } from "./supabase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
 import type { KronosState, User } from "./types";
 
-/** Dados de um usuário na nuvem (tudo, menos flags locais e o registro de contas). */
 export type CloudData = Omit<KronosState, "hydrated" | "users">;
-
-const TABELA = "kronos_snapshots";
 
 export interface CloudSession {
   userId: string;
@@ -20,56 +17,72 @@ export interface CloudSession {
 }
 
 export async function cloudGetSession(): Promise<CloudSession | null> {
-  if (!supabase) return null;
-  const { data } = await supabase.auth.getSession();
-  const s = data.session;
-  return s ? { userId: s.user.id, email: s.user.email ?? "" } : null;
+  return new Promise((resolve) => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      unsubscribe();
+      if (firebaseUser) {
+        resolve({ userId: firebaseUser.uid, email: firebaseUser.email ?? "" });
+      } else {
+        resolve(null);
+      }
+    });
+  });
 }
 
 export async function cloudSignIn(email: string, senha: string): Promise<{ ok: boolean; error?: string; userId?: string }> {
-  if (!supabase) return { ok: false, error: "Nuvem não configurada." };
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha });
-  if (error) return { ok: false, error: traduzErro(error.message) };
-  return { ok: true, userId: data.user?.id };
+  try {
+    const { user } = await signInWithEmailAndPassword(auth, email, senha);
+    return { ok: true, userId: user.uid };
+  } catch (error: any) {
+    return { ok: false, error: traduzErro(error.message) };
+  }
 }
 
 export async function cloudSignUp(email: string, senha: string): Promise<{ ok: boolean; error?: string; userId?: string; precisaConfirmar?: boolean }> {
-  if (!supabase) return { ok: false, error: "Nuvem não configurada." };
-  const { data, error } = await supabase.auth.signUp({ email, password: senha });
-  if (error) return { ok: false, error: traduzErro(error.message) };
-  // Se a confirmação de e-mail estiver ligada, não há sessão até confirmar.
-  return { ok: true, userId: data.user?.id, precisaConfirmar: !data.session };
+  try {
+    const { user } = await createUserWithEmailAndPassword(auth, email, senha);
+    return { ok: true, userId: user.uid };
+  } catch (error: any) {
+    return { ok: false, error: traduzErro(error.message) };
+  }
 }
 
 export async function cloudSignOut(): Promise<void> {
-  if (!supabase) return;
-  await supabase.auth.signOut();
+  await signOut(auth);
 }
 
-/** Carrega o snapshot do usuário (null se ainda não existe). */
 export async function cloudLoad(userId: string): Promise<CloudData | null> {
-  if (!supabase) return null;
-  const { data, error } = await supabase.from(TABELA).select("data").eq("user_id", userId).maybeSingle();
-  if (error || !data) return null;
-  return data.data as CloudData;
+  try {
+    const snap = await getDoc(doc(db, "kronos_snapshots", userId));
+    return snap.exists() ? (snap.data() as CloudData) : null;
+  } catch (error) {
+    console.error("[Kronos] falha ao carregar da nuvem:", error);
+    return null;
+  }
 }
 
-/** Salva (upsert) o snapshot do usuário. */
 export async function cloudSave(userId: string, data: CloudData): Promise<void> {
-  if (!supabase) return;
-  await supabase.from(TABELA).upsert({ user_id: userId, data, updated_at: new Date().toISOString() }, { onConflict: "user_id" });
+  try {
+    await setDoc(doc(db, "kronos_snapshots", userId), semUndefined(data));
+  } catch (error) {
+    console.error("[Kronos] falha ao salvar na nuvem:", error);
+  }
 }
 
-/** Observa login/logout em outras abas/janelas. */
+/**
+ * Firestore rejeita documentos com campos `undefined`. O round-trip por JSON
+ * remove essas chaves e mantém o restante do snapshot intacto.
+ */
+function semUndefined<T>(data: T): T {
+  return JSON.parse(JSON.stringify(data)) as T;
+}
+
 export function cloudOnAuthChange(cb: (session: CloudSession | null) => void): () => void {
-  if (!supabase) return () => {};
-  const { data } = supabase.auth.onAuthStateChange((_e, s) => {
-    cb(s ? { userId: s.user.id, email: s.user.email ?? "" } : null);
+  return onAuthStateChanged(auth, (firebaseUser) => {
+    cb(firebaseUser ? { userId: firebaseUser.uid, email: firebaseUser.email ?? "" } : null);
   });
-  return () => data.subscription.unsubscribe();
 }
 
-/** Estado inicial de um usuário novo na nuvem. */
 export function cloudEstadoInicial(user: User): CloudData {
   return {
     user,
@@ -88,9 +101,9 @@ export function cloudEstadoInicial(user: User): CloudData {
 
 function traduzErro(msg: string): string {
   const m = msg.toLowerCase();
-  if (m.includes("invalid login")) return "E-mail ou senha incorretos.";
-  if (m.includes("already registered") || m.includes("already been registered")) return "E-mail já cadastrado.";
-  if (m.includes("password")) return "Senha inválida (mínimo 6 caracteres).";
-  if (m.includes("email")) return "E-mail inválido.";
+  if (m.includes("wrong-password") || m.includes("user-not-found")) return "E-mail ou senha incorretos.";
+  if (m.includes("email-already-in-use")) return "E-mail já cadastrado.";
+  if (m.includes("weak-password")) return "Senha inválida (mínimo 6 caracteres).";
+  if (m.includes("invalid-email")) return "E-mail inválido.";
   return msg;
 }
