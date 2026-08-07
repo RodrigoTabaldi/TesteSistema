@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101828" />
+  <title>Vitrine Software · Desenvolvimento de sistemas sob medida</title>
+  <meta name="description" content="Vitrine Software desenvolve sistemas web, aplicativos, integrações e plataformas cloud sob medida. Tecnologia que coloca o seu negócio na vitrine certa." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <!-- ============ TOP BAR ============ -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" fill="currentColor"/></svg>
+        Software que aparece na vitrine certa.
+      </div>
+      <div class="topbar-links">
+        <a href="#">Blog</a>
+        <a href="#">Carreiras</a>
+        <a href="#">Suporte</a>
+        <a href="#contato">Área do cliente</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="brand" aria-label="Vitrine Software — início">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="24" stroke="#101828" stroke-width="4"/>
+          <circle cx="32" cy="8" r="4" fill="#101828"/>
+          <circle cx="32" cy="56" r="4" fill="#2E5BFF"/>
+          <path d="M25 24 L17 32 L25 40" stroke="#101828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M39 24 L47 32 L39 40" stroke="#101828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 22 L28 42" stroke="#2E5BFF" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-word">vitrine <b>software</b></span>
+      </a>
+
+      <nav aria-label="Principal">
+        <ul class="nav">
+          <li class="has-menu">
+            <a href="#solucoes">Soluções
+              <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="mega">
+              <a class="mega-item" href="#solucoes">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <span><h5>Sistemas Web</h5><p>Plataformas e portais sob medida.</p></span>
+              </a>
+              <a class="mega-item" href="#solucoes">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                <span><h5>Apps Mobile</h5><p>iOS e Android nativos e híbridos.</p></span>
+              </a>
+              <a class="mega-item" href="#solucoes">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                <span><h5>Integrações & APIs</h5><p>Conecte ERPs, gateways e legados.</p></span>
+              </a>
+              <a class="mega-item" href="#solucoes">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18a4 4 0 010-8 5 5 0 019.6-1.5A3.5 3.5 0 1118 18H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                <span><h5>Cloud & DevOps</h5><p>Infra escalável, CI/CD e observabilidade.</p></span>
+              </a>
+            </div>
+          </li>
+          <li><a href="#segmentos">Segmentos</a></li>
+          <li><a href="#plataforma">Como fazemos</a></li>
+          <li><a href="#numeros">Resultados</a></li>
+          <li><a href="#depoimentos">Clientes</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#contato" class="btn btn-ghost btn-desktop">Área do cliente</a>
+        <a href="#contato" class="btn btn-primary">Fale com um especialista</a>
+        <button class="burger" id="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <div class="scrim" id="scrim"></div>
+  <aside class="mobile-nav" id="mobileNav" aria-label="Menu">
+    <button class="close" id="closeNav" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a href="#" class="brand"><span class="brand-word">vitrine <b>software</b></span></a>
+    <h4>Navegação</h4>
+    <a href="#solucoes">Soluções</a>
+    <a href="#segmentos">Segmentos</a>
+    <a href="#plataforma">Como fazemos</a>
+    <a href="#numeros">Resultados</a>
+    <a href="#depoimentos">Clientes</a>
+    <a href="#contato">Contato</a>
+    <a href="#contato" class="btn btn-ghost">Área do cliente</a>
+    <a href="#contato" class="btn btn-primary">Fale com um especialista</a>
+  </aside>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow on-dark">Desenvolvimento de sistemas</span>
+        <h1>Tecnologia sob medida que coloca o seu negócio na <span class="grad">vitrine certa</span>.</h1>
+        <p class="lead">Somos a fábrica de software que transforma processos em produtos digitais: sistemas web, aplicativos, integrações e plataformas em nuvem — do código à operação.</p>
+        <div class="hero-cta">
+          <a href="#contato" class="btn btn-primary btn-lg">Começar um projeto
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#solucoes" class="btn btn-ghost on-dark btn-lg">Ver soluções</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="n">+180</div><div class="l">projetos entregues</div></div>
+          <div><div class="n">99,9%</div><div class="l">uptime das aplicações</div></div>
+          <div><div class="n">12 anos</div><div class="l">construindo software</div></div>
+        </div>
+      </div>
+
+      <div class="code-visual">
+        <div class="code-card">
+          <div class="code-top">
+            <i class="dot1"></i><i class="dot2"></i><i class="dot3"></i>
+            <span>vitrine.service.ts</span>
+          </div>
+          <div class="code-body">
+            <span class="ln"><span class="c-com">// entrega contínua, do código à vitrine</span></span>
+            <span class="ln"><span class="c-key">export class</span> <span class="c-fn">VitrineService</span> {</span>
+            <span class="ln">  <span class="c-key">async</span> <span class="c-fn">deploy</span>(<span class="c-var">app</span>: <span class="c-fn">Produto</span>) {</span>
+            <span class="ln">    <span class="c-key">const</span> <span class="c-var">build</span> = <span class="c-key">await</span> <span class="c-fn">ci</span>.<span class="c-fn">run</span>(<span class="c-var">app</span>);</span>
+            <span class="ln">    <span class="c-key">return</span> <span class="c-fn">cloud</span>.<span class="c-fn">publish</span>({</span>
+            <span class="ln">      <span class="c-var">uptime</span>: <span class="c-num">99.9</span>,</span>
+            <span class="ln">      <span class="c-var">escala</span>: <span class="c-str">'automatica'</span>,</span>
+            <span class="ln">    });</span>
+            <span class="ln">  }</span>
+            <span class="ln">}</span>
+          </div>
+        </div>
+        <div class="code-tag">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Deploy em produção
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST ============ -->
+  <div class="trust">
+    <div class="container">
+      <p>Do código à nuvem, dominamos a stack</p>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>React</span><span>Node.js</span><span>TypeScript</span><span>Python</span><span>Flutter</span><span>PostgreSQL</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Next.js</span>
+          <span>React</span><span>Node.js</span><span>TypeScript</span><span>Python</span><span>Flutter</span><span>PostgreSQL</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Next.js</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SOLUÇÕES ============ -->
+  <section class="section" id="solucoes">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="eyebrow centered">Nossas soluções</span>
+        <h2>Uma fábrica de software completa</h2>
+        <p>Cobrimos todo o ciclo do produto digital — da ideia validada ao sistema em produção, com times dedicados de engenharia, design e dados.</p>
+      </div>
+      <div class="grid-cards">
+        <article class="card reveal" data-d="1">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Sistemas Web</h3>
+          <p>Plataformas SaaS, portais e painéis administrativos sob medida, rápidos e seguros.</p>
+          <ul class="mini"><li>Aplicações e SaaS multi-tenant</li><li>Painéis e áreas do cliente</li><li>E-commerce e marketplaces</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="card reveal" data-d="2">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Aplicativos Mobile</h3>
+          <p>Apps nativos e híbridos com performance de produto e experiência impecável.</p>
+          <ul class="mini"><li>iOS e Android</li><li>Flutter e React Native</li><li>Publicação nas lojas</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="card reveal" data-d="3">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7l8-4 8 4-8 4-8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h3>Integrações & APIs</h3>
+          <p>Conecte ERPs, gateways de pagamento, CRMs e sistemas legados sem atrito.</p>
+          <ul class="mini"><li>APIs REST e GraphQL</li><li>Integração com ERPs e TOTVS</li><li>Webhooks e mensageria</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="card reveal" data-d="1">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18a4 4 0 010-8 5 5 0 019.6-1.5A3.5 3.5 0 1118 18H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h3>Cloud & DevOps</h3>
+          <p>Infraestrutura elástica, pipelines de CI/CD e monitoramento 24/7.</p>
+          <ul class="mini"><li>AWS, Azure e GCP</li><li>Docker e Kubernetes</li><li>Observabilidade e SRE</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="card reveal" data-d="2">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Dados & BI</h3>
+          <p>Dashboards, data warehouse e inteligência para decisões guiadas por dados.</p>
+          <ul class="mini"><li>ETL e data pipelines</li><li>Painéis e relatórios</li><li>IA e modelos preditivos</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="card reveal" data-d="3">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.9H22l-6 4.3 2.3 7-6.3-4.5L5.7 20 8 13.2 2 8.9h7.6L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h3>Sustentação & Squads</h3>
+          <p>Times dedicados que evoluem o seu produto com previsibilidade e SLA.</p>
+          <ul class="mini"><li>Squads sob demanda</li><li>Manutenção evolutiva</li><li>Suporte com SLA</li></ul>
+          <a href="#contato" class="link-arrow">Saiba mais <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POR QUE ============ -->
+  <section class="section why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow on-dark">Por que a Vitrine</span>
+        <h2>Software de verdade, feito para durar</h2>
+        <p>Não entregamos apenas telas: entregamos produtos escaláveis, documentados e prontos para crescer com o seu negócio.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item reveal" data-d="1">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h4>Entrega ágil</h4>
+          <p>Ciclos curtos e entregas contínuas — você vê valor a cada sprint.</p>
+        </div>
+        <div class="why-item reveal" data-d="2">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+          <h4>Segurança por padrão</h4>
+          <p>Boas práticas de OWASP, LGPD e criptografia desde a primeira linha.</p>
+        </div>
+        <div class="why-item reveal" data-d="3">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3 8 4-16 3 8h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4>Escala garantida</h4>
+          <p>Arquitetura em nuvem que acompanha picos sem quebrar a operação.</p>
+        </div>
+        <div class="why-item reveal" data-d="4">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4>Time sênior</h4>
+          <p>Engenheiros, designers e PMs dedicados ao seu produto, não terceirizados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLATAFORMA / PROCESSO ============ -->
+  <section class="section" id="plataforma">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Como fazemos</span>
+          <h2 style="font-size:clamp(28px,4vw,42px);margin:16px 0 18px">Do briefing ao deploy, um processo transparente</h2>
+          <p style="color:var(--fg-muted);font-size:17px;margin-bottom:30px">Metodologia enxuta com marcos claros. Você sabe onde o projeto está em cada etapa.</p>
+          <div class="steps">
+            <div class="step"><div class="num">1</div><div><h4>Descoberta & Estratégia</h4><p>Entendemos o problema, mapeamos o escopo e definimos o MVP.</p></div></div>
+            <div class="step"><div class="num">2</div><div><h4>Design & Prototipação</h4><p>UX/UI validado com protótipos navegáveis antes de escrever código.</p></div></div>
+            <div class="step"><div class="num">3</div><div><h4>Engenharia & QA</h4><p>Desenvolvimento em sprints, testes automatizados e revisão contínua.</p></div></div>
+            <div class="step"><div class="num">4</div><div><h4>Deploy & Evolução</h4><p>Publicação em nuvem, monitoramento e evolução guiada por dados.</p></div></div>
+          </div>
+        </div>
+        <div class="reveal" data-d="2">
+          <div class="panel">
+            <h3>Painel de operação</h3>
+            <div class="metric"><span class="k">Cobertura de testes</span><span class="v">92%</span></div>
+            <div class="metric"><span class="k">Tempo médio de deploy</span><span class="v">4 min</span></div>
+            <div class="metric"><span class="k">Disponibilidade (SLA)</span><span class="v">99,9%</span></div>
+            <div class="metric"><span class="k">Satisfação do cliente</span><span class="v">4,9/5</span></div>
+            <a href="#contato" class="btn btn-white" style="width:100%;margin-top:22px">Quero esses resultados</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SEGMENTOS ============ -->
+  <section class="section" id="segmentos" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="eyebrow centered">Segmentos atendidos</span>
+        <h2>Experiência em diversos mercados</h2>
+        <p>Já construímos software para empresas de portes e setores muito diferentes.</p>
+      </div>
+      <div class="segments">
+        <div class="seg reveal" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div><span>Varejo</span></div>
+        <div class="seg reveal" data-d="1"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.5-7 10-7 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 6v5M9.5 8.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><span>Saúde</span></div>
+        <div class="seg reveal" data-d="2"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2M12 12v4M10 14h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><span>Indústria</span></div>
+        <div class="seg reveal" data-d="2"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg></div><span>Serviços</span></div>
+        <div class="seg reveal" data-d="3"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M2 10h20M6 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><span>Fintech</span></div>
+        <div class="seg reveal" data-d="3"><div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M7 20c-3 0-5-2-5-5 0-2.5 2-4.5 4.5-4.5C7 7 9.5 5 13 5c4 0 7 3 7 7 0 .7-.1 1.4-.3 2M12 22V12M12 12l3 3M12 12l-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Agro</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NÚMEROS ============ -->
+  <section class="section stats-band" id="numeros">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat reveal" data-d="1"><div class="n" data-count="180" data-suffix="+">0</div><div class="l">Projetos entregues</div></div>
+        <div class="stat reveal" data-d="2"><div class="n" data-count="95" data-suffix="+">0</div><div class="l">Clientes ativos</div></div>
+        <div class="stat reveal" data-d="3"><div class="n" data-count="40" data-suffix="+">0</div><div class="l">Especialistas no time</div></div>
+        <div class="stat reveal" data-d="4"><div class="n" data-count="12" data-suffix=" anos">0</div><div class="l">De experiência</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS ============ -->
+  <section class="section" id="depoimentos">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="eyebrow centered">Clientes</span>
+        <h2>Quem constrói com a Vitrine, recomenda</h2>
+      </div>
+      <div class="quotes">
+        <article class="quote reveal" data-d="1">
+          <div class="stars">★★★★★</div>
+          <p>"A Vitrine assumiu um sistema legado que ninguém queria tocar e o transformou em uma plataforma moderna. Reduzimos custos e ganhamos velocidade."</p>
+          <div class="who"><div class="av">MR</div><div><b>Marina Rocha</b><small>CTO · Grupo NorteVarejo</small></div></div>
+        </article>
+        <article class="quote reveal" data-d="2">
+          <div class="stars">★★★★★</div>
+          <p>"Do protótipo ao app na loja em três meses. O time é sênior de verdade e a comunicação é impecável. Viraram nosso parceiro de tecnologia."</p>
+          <div class="who"><div class="av">TF</div><div><b>Thiago Ferraz</b><small>CEO · Clínica Vida+</small></div></div>
+        </article>
+        <article class="quote reveal" data-d="3">
+          <div class="stars">★★★★★</div>
+          <p>"Integraram nosso ERP com o e-commerce e o financeiro sem downtime. Escala, segurança e suporte que a gente confia."</p>
+          <div class="who"><div class="av">CA</div><div><b>Camila Alves</b><small>Diretora de Ops · IndústriaSul</small></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h2>Pronto para colocar seu produto na vitrine?</h2>
+        <p>Converse com um especialista e receba um diagnóstico gratuito do seu projeto em até 48 horas.</p>
+        <div class="cta-actions">
+          <a href="#contato" class="btn btn-primary btn-lg">Fale com um especialista
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#solucoes" class="btn btn-ghost on-dark btn-lg">Conhecer soluções</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section class="section" id="contato" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">Fale conosco</span>
+          <h2 style="font-size:clamp(28px,4vw,42px);margin:16px 0 18px">Vamos construir o seu próximo sistema</h2>
+          <p style="color:var(--fg-muted);font-size:17px;margin-bottom:34px">Conte sobre o seu desafio. Nosso time responde em até um dia útil com os próximos passos.</p>
+          <ul class="contact-info">
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><div><b>E-mail</b><span>contato@vitrinesoftware.com</span></div></li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><div><b>Telefone</b><span>+55 (11) 4000-0000</span></div></li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg></span><div><b>Onde estamos</b><span>São Paulo · SP — atendimento em todo o Brasil</span></div></li>
+          </ul>
+        </div>
+
+        <div class="reveal" data-d="2">
+          <form class="form" id="contactForm" novalidate>
+            <div class="form-fields" id="formFields">
+              <div class="form-row">
+                <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Seu nome" required /></div>
+                <div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" placeholder="Sua empresa" /></div>
+              </div>
+              <div class="form-row">
+                <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="voce@empresa.com" required /></div>
+                <div class="field"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" placeholder="(11) 90000-0000" /></div>
+              </div>
+              <div class="field"><label for="servico">Como podemos ajudar?</label>
+                <select id="servico" name="servico">
+                  <option>Sistema web / SaaS</option>
+                  <option>Aplicativo mobile</option>
+                  <option>Integração & APIs</option>
+                  <option>Cloud & DevOps</option>
+                  <option>Dados & BI</option>
+                  <option>Squad / sustentação</option>
+                </select>
+              </div>
+              <div class="field"><label for="msg">Mensagem</label><textarea id="msg" name="msg" placeholder="Conte sobre o seu projeto..."></textarea></div>
+              <button type="submit" class="btn btn-primary btn-lg">Enviar solicitação
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="form-note">Ao enviar, você concorda com nossa política de privacidade (LGPD).</p>
+            </div>
+            <div class="form-ok" id="formOk">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <h3>Solicitação enviada!</h3>
+              <p>Obrigado. Nosso time entra em contato em até um dia útil.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="brand">
+            <svg viewBox="0 0 64 64" fill="none" width="38" height="38">
+              <circle cx="32" cy="32" r="24" stroke="#fff" stroke-width="4"/>
+              <circle cx="32" cy="8" r="4" fill="#fff"/>
+              <circle cx="32" cy="56" r="4" fill="#2E5BFF"/>
+              <path d="M25 24 L17 32 L25 40" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M39 24 L47 32 L39 40" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M36 22 L28 42" stroke="#2E5BFF" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span class="brand-word">vitrine <b>software</b></span>
+          </a>
+          <p class="fdesc">Fábrica de software que transforma processos em produtos digitais. Da ideia ao deploy, colocamos o seu negócio na vitrine certa.</p>
+          <div class="socials">
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg></a>
+            <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.3-1.1.6-1.4-2.2-.3-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.5 5 .3.3.6.9.6 1.8v2.7c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Soluções</h5>
+          <ul><li><a href="#solucoes">Sistemas Web</a></li><li><a href="#solucoes">Apps Mobile</a></li><li><a href="#solucoes">Integrações & APIs</a></li><li><a href="#solucoes">Cloud & DevOps</a></li><li><a href="#solucoes">Dados & BI</a></li></ul>
+        </div>
+        <div>
+          <h5>Empresa</h5>
+          <ul><li><a href="#plataforma">Como fazemos</a></li><li><a href="#numeros">Resultados</a></li><li><a href="#depoimentos">Clientes</a></li><li><a href="#">Carreiras</a></li><li><a href="#">Blog</a></li></ul>
+        </div>
+        <div>
+          <h5>Segmentos</h5>
+          <ul><li><a href="#segmentos">Varejo</a></li><li><a href="#segmentos">Saúde</a></li><li><a href="#segmentos">Indústria</a></li><li><a href="#segmentos">Fintech</a></li><li><a href="#segmentos">Agro</a></li></ul>
+        </div>
+        <div>
+          <h5>Contato</h5>
+          <ul><li><a href="mailto:contato@vitrinesoftware.com">contato@vitrinesoftware.com</a></li><li><a href="#contato">+55 (11) 4000-0000</a></li><li><a href="#contato">Área do cliente</a></li><li><a href="#contato">Suporte</a></li></ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Vitrine Software · Família Vitrine. Todos os direitos reservados.</span>
+        <span class="badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" fill="currentColor"/></svg>
+          Software que aparece na vitrine certa.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

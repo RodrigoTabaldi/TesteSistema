@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vitrine Software">
+  <!-- Anel navy (mesma construção do globo da vitrine sites) -->
+  <circle cx="32" cy="32" r="24" stroke="#101828" stroke-width="4"/>
+  <!-- Dois nós ligados: software como sistemas conectados -->
+  <circle cx="32" cy="8" r="4" fill="#101828"/>
+  <circle cx="32" cy="56" r="4" fill="#2E5BFF"/>
+  <!-- Código no lugar do globo: < / > — a barra é o único elemento azul -->
+  <path d="M25 24 L17 32 L25 40" stroke="#101828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 24 L47 32 L39 40" stroke="#101828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M36 22 L28 42" stroke="#2E5BFF" stroke-width="4" stroke-linecap="round"/>
+</svg>
