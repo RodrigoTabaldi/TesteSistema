@@ -1,0 +1,28 @@
+<svg width="560" height="96" viewBox="0 0 560 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kronos — Gestão Financeira">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E4C87F"/>
+      <stop offset="1" stop-color="#C9A24B"/>
+    </linearGradient>
+  </defs>
+  <!-- Emblema -->
+  <g transform="translate(16,16)">
+    <circle cx="32" cy="32" r="29" fill="none" stroke="url(#g)" stroke-width="2"/>
+    <ellipse cx="32" cy="32" rx="29" ry="11" fill="none" stroke="url(#g)" stroke-width="1.1" opacity="0.45"/>
+    <ellipse cx="32" cy="32" rx="29" ry="11" fill="none" stroke="url(#g)" stroke-width="1.1" opacity="0.32" transform="rotate(60 32 32)"/>
+    <g stroke="url(#g)" stroke-width="2.4" stroke-linecap="round" fill="none">
+      <line x1="21" y1="18" x2="43" y2="18"/>
+      <line x1="21" y1="46" x2="43" y2="46"/>
+    </g>
+    <path d="M23 18 L41 18 L32 32 Z" fill="url(#g)"/>
+    <path d="M32 32 L41 46 L23 46 Z" fill="url(#g)" opacity="0.92"/>
+    <path d="M23 18 Q17 32 23 46" fill="none" stroke="url(#g)" stroke-width="1" opacity="0.5"/>
+    <path d="M41 18 Q47 32 41 46" fill="none" stroke="url(#g)" stroke-width="1" opacity="0.5"/>
+    <circle cx="32" cy="32" r="1.8" fill="#0f1730" stroke="url(#g)" stroke-width="0.8"/>
+  </g>
+  <!-- Wordmark (usa Spectral se disponível; Georgia como fallback) -->
+  <text x="98" y="52" font-family="Spectral, Georgia, 'Times New Roman', serif" font-weight="700" font-size="44" letter-spacing="5">
+    <tspan fill="#EDF1FB">KRO</tspan><tspan fill="#C9A24B">NOS</tspan>
+  </text>
+  <text x="100" y="74" font-family="'IBM Plex Sans', Arial, sans-serif" font-weight="600" font-size="12" letter-spacing="5.5" fill="#8A93AC">GESTÃO FINANCEIRA</text>
+</svg>

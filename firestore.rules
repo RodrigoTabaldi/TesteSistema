@@ -1,0 +1,27 @@
+// ============================================================
+// KRONOS — Regras de segurança do Firestore
+//
+// Modelo de dados: um documento por usuário em kronos_snapshots/{userId},
+// escrito/lido por lib/cloud.ts. A única barreira entre os dados
+// financeiros de um usuário e os de outro é esta regra — sem ela (ou
+// com o modo de teste padrão do Firebase), qualquer usuário autenticado
+// poderia ler/sobrescrever o snapshot de qualquer outro usuário.
+//
+// Deploy: firebase deploy --only firestore:rules
+// Verificação local: firebase emulators:start --only firestore
+// ============================================================
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /kronos_snapshots/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Nega tudo que não foi explicitamente liberado acima.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
